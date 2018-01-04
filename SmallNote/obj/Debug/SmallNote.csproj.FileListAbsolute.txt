@@ -1,0 +1,6 @@
+G:\visual stadio workspace\SmallNote\SmallNote\bin\Debug\SmallNote.exe.config
+G:\visual stadio workspace\SmallNote\SmallNote\bin\Debug\SmallNote.exe
+G:\visual stadio workspace\SmallNote\SmallNote\bin\Debug\SmallNote.pdb
+G:\visual stadio workspace\SmallNote\SmallNote\obj\Debug\SmallNote.csprojResolveAssemblyReference.cache
+G:\visual stadio workspace\SmallNote\SmallNote\obj\Debug\SmallNote.exe
+G:\visual stadio workspace\SmallNote\SmallNote\obj\Debug\SmallNote.pdb
