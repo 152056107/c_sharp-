@@ -9,16 +9,34 @@ namespace SmallNote
 {
     class NewNote
     {
+        public delegate void SaveEventHander(object sender, SaveType e);
+        public event SaveEventHander SaveEvent;
+        protected virtual void Save(SaveType e)
+        {
+            if (SaveEvent != null)
+            {
+                SaveEvent(this, e);
+            }
+        }
+
         public void Newnote()
         {
-            Console.WriteLine("请输入内容");
-            StreamWriter sw = new StreamWriter(@"G:\notebook\notebook1.txt", true);
-            sw.WriteLine("内容：");
-            sw.WriteLine(Console.ReadLine());
-            sw.Flush();
-            sw.Close();
-            Console.WriteLine("笔记本已新建完成");
-            Console.ReadKey();
-        } 
+
+            FileStream NewText = File.Create(@"g:\notebook\notebook.txt");
+            Console.WriteLine("笔本已新建完成");
+            NewText.Close();
+
+            Console.WriteLine("请输入笔记：");
+            String text = Console.ReadLine();
+            Console.WriteLine("是否要保存笔记（y/n）");
+            string answer = Console.ReadLine();
+            if (answer.Equals("y"))
+            {
+                SaveType t = new SaveType(text);
+                Save(t);
+            }
+            else { }
+        }
+
     }
 }

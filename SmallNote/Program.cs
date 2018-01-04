@@ -10,11 +10,20 @@ namespace SmallNote
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("      *****************************************      ");
-            Console.WriteLine("      *    1.新建笔记本       2.打开笔记本     *     ");
-            Console.WriteLine("      *    3.新建分类         4.管理分类       *     ");
-            Console.WriteLine("      *    5.保存笔记         6.退出           *     ");
+            SaveNote saven = new SaveNote();
+            NewNote newn = new NewNote();
+            OpenNote openn = new OpenNote();
+            NewClass newc = new NewClass();
+            ManagerClass mc = new ManagerClass();
+            newn.SaveEvent += saven.Savenote;
+            openn.NewNoteEvent += newn.Newnote;
+            newc.SaveCEvent += saven.Savenote;
+            mc.NewClassEvent += newc.Newclass;
 
+            Console.WriteLine("      *****************************************      ");
+            Console.WriteLine("      *   1.新建笔记本       2.打开笔记本?    *     ");
+            Console.WriteLine("      *    3.新建分类       4.管理分类     *    ");
+            Console.WriteLine("      *    5.保存笔记        6.退出         *        ");
             Console.WriteLine("      *****************************************      ");
 
             Console.WriteLine("请输入菜单选项1~6");
@@ -22,39 +31,39 @@ namespace SmallNote
             switch (key)
             {
                 case "1":
-                    NewNote newnote = new NewNote();
-                    newnote.Newnote();
+                    newn.Newnote();
                     break;
                 case "2":
-                    OpenNote openote = new OpenNote();
-                    openote.Opennote();
+                    openn.Opennote();
                     break;
                 case "3":
-                    NewClass newclass = new NewClass();
-                    newclass.Newclass();
+                    newc.Newclass();
                     break;
                 case "4":
-                    ManagerClass mc = new ManagerClass();
-                    mc.ShowClas();
+                    mc.ShowClass();
                     break;
-                case "5":
-                    SaveNote sn = new SaveNote();
-                    sn.Savenote();
-                    break;
+
                 case "6":
                     Console.WriteLine("退出");
                     break;
                 default:
-                    Console.WriteLine("请输入1~6的数字");
+                    Console.WriteLine("请输入以上数字：");
                     break;
 
 
             }
-            Console.ReadKey();
 
             }
        
 
         }
+    class SaveType : EventArgs
+    {
+        public readonly string text;
+        public SaveType(String text)
+        {
+            this.text = text;
+        }
+    }
     }
 

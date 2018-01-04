@@ -9,15 +9,12 @@ namespace SmallNote
 {
     class SaveNote
     {
-        public void Savenote()
+        public void Savenote(object sender, SaveType text)
         {
-            Console.WriteLine("请输入笔记：");
-            String text = Console.ReadLine();
-            StreamWriter sw = new StreamWriter(@"G:\notebook\notebook2.txt");
+            StreamWriter sw = new StreamWriter(@"g:\notebook\notebook.txt");
             sw.WriteLine(text);
-            Console.WriteLine("笔记已保存成功");
+            Console.WriteLine("笔记本保存成功");
             sw.Close();
-            Console.ReadKey();
         }
     }
 }

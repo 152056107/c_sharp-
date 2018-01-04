@@ -9,14 +9,34 @@ namespace SmallNote
 {
     class ManagerClass
     {
-        public void ShowClas()
+        public delegate void NewClassEventHander();
+        public event NewClassEventHander NewClassEvent;
+        protected virtual void NewCEvent(EventArgs e)
+        {
+            if (NewClassEvent != null)
+            {
+                NewClassEvent();
+            }
+        }
+        public void ShowClass()
         {
             Console.WriteLine("可以查看笔记类型");
             String text = string.Empty;
-            StreamReader sr = new StreamReader(@"G:\notebook\leixing.txt");
-            text = sr.ReadToEnd();//调用该方法读取文件中的全部内容
+            StreamReader sr = new StreamReader(@"g:\notebook\notebook.txt");
+            text = sr.ReadToEnd();
+
             Console.WriteLine(text);
             sr.Close();
+
+            Console.WriteLine("是否需要添加笔记类型(y/n)");
+            string answer = Console.ReadLine();
+            if (answer.Equals("y"))
+            {
+
+                EventArgs e = new EventArgs();
+                NewCEvent(e);
+            }
+            else { }
         }
     }
 }
